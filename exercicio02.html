@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // const newXml = new XMLHttpRequest();
+      // newXml.open("GET", "https://cat-fact.herokuapp.com/facts/");
+      // newXml.send();
+
+      // newXml.onload = function () {
+      //   if (newXml.status === 200) {
+      //     const response = JSON.parse(newXml.responseText);
+      //     console.log(response);
+      //   } else {
+      //     console.log("Erro na requisição: ", newXml.status);
+      //   }
+      // };
+      // newXml.send();
+
+      fetch("https://cat-fact.herokuapp.com/facts/")
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error("Erro na requisição: " + response.status);
+          }
+          return response.json();
+        })
+        .then((data) => {
+          console.log(data);
+        })
+        .catch((error) => {
+          console.log("Erro:", error);
+        });
+
+      function consoleLogText(data) {
+        if (Array.isArray(data)) {
+          data.forEach((item) => {
+            console.log(item.text);
+          });
+        }
+      }
+    </script>
+  </body>
+</html>
